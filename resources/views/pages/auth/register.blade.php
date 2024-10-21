@@ -15,23 +15,17 @@
         </div>
 
         <div class="card-body">
-            <form method="POST">
-                <div class="">
-                    <div class="form-group">
-                        <label for="frist_name">First Name</label>
-                        <input id="frist_name"
-                            type="text"
-                            class="form-control"
-                            name="frist_name"
-                            autofocus>
-                    </div>
-                    <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        <input id="last_name"
-                            type="text"
-                            class="form-control"
-                            name="last_name">
-                    </div>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+                
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input id="Name"
+                        type="text"
+                        class="form-control"
+                        value="{{ old('Name') }}"
+                        name="Name"
+                        autofocus>
                 </div>
 
                 <div class="form-group">
@@ -39,6 +33,7 @@
                     <input id="email"
                         type="email"
                         class="form-control"
+                        value="{{ old('email')}}"
                         name="email">
                     <div class="invalid-feedback">
                     </div>
@@ -50,9 +45,15 @@
                             class="d-block">Password</label>
                         <input id="password"
                             type="password"
-                            class="form-control pwstrength"
+                            class="form-control pwstrength @error('password') is-invalid
+                             @enderror"
                             data-indicator="pwindicator"
                             name="password">
+                        @error('pasword')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div> 
+                        @enderror
                         <div id="pwindicator"
                             class="pwindicator">
                             <div class="bar"></div>
@@ -64,8 +65,14 @@
                             class="d-block">Password Confirmation</label>
                         <input id="password2"
                             type="password"
-                            class="form-control"
-                            name="password-confirm">
+                            class="form-control @error('password_confirmation') is-invalid 
+                            @enderror"
+                            name="password_confirmation">
+                            @error('password_confirmation') 
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                     </div>
                 </div>
 
