@@ -19,12 +19,12 @@
                 @csrf
                 
                 <div class="form-group">
-                    <label for="Name">Name</label>
-                    <input id="Name"
+                    <label for="name">Name</label>
+                    <input id="name"
                         type="text"
                         class="form-control"
-                        value="{{ old('Name') }}"
-                        name="Name"
+                        value="{{ old('name') }}"
+                        name="name"
                         autofocus>
                 </div>
 
